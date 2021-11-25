@@ -1,0 +1,22 @@
+{
+  "name": "fullstack-app",
+  "description": "FullStack application (React + Express)",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexwerst/fullstack-app.git"
+  },
+  "author": "Alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexwerst/fullstack-app/issues"
+  },
+  "homepage": "https://github.com/alexwerst/fullstack-app#readme"
+}
