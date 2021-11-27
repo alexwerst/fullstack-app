@@ -1,0 +1,55 @@
+{
+  "extends": [
+    "airbnb-typescript",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "simple-import-sort",
+    "prettier",
+    "@typescript-eslint",
+    "react-hooks",
+    "prefer-arrow"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "prettier/prettier": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "react/jsx-key": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/member-ordering": "error",
+    "prefer-arrow/prefer-arrow-functions": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "arrow-body-style": ["error", "as-needed"],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "react/no-danger": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "return" }],
+    "react/require-default-props": ["error", { "forbidDefaultForRequired": true, "ignoreFunctionalComponents": true }],
+    "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "jsx-a11y/label-has-associated-control": [2, { "assert": "either" }],
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "no-plusplus": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}
