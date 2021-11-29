@@ -1,9 +1,19 @@
-import express from 'express';
+import express, { Express, Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import helmet from 'helmet';
+import dotenv from 'dotenv';
 
-const app = express();
-const port = 3030;
+dotenv.config();
 
-app.get('/', (_req, res) => {
-  res.status(200).send('Hello from the server side!')
+const PORT = process.env.PORT || 3030;
+const app: Express = express();
+
+app.use(helmet());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (_req: Request, res: Response) => {
+  res.send('<h1>Hello from the TypeScript world!</h1>');
 });
-app.listen(port, () => console.log(`App running on port ${port}...`));
+
+app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
