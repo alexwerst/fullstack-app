@@ -14,9 +14,9 @@
   "plugins": [
     "simple-import-sort",
     "prettier",
-    "@typescript-eslint",
     "react-hooks",
-    "prefer-arrow"
+    "prefer-arrow",
+    "import"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
@@ -38,7 +38,6 @@
     "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "return" }],
     "react/require-default-props": ["error", { "forbidDefaultForRequired": true, "ignoreFunctionalComponents": true }],
     "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
-    "jsx-a11y/label-has-associated-control": [2, { "assert": "either" }],
     "jsx-a11y/interactive-supports-focus": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "no-plusplus": "off",
@@ -48,7 +47,6 @@
   },
   "settings": {
     "react": {
-      "pragma": "React",
       "version": "detect"
     }
   }
