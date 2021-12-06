@@ -1,0 +1,13 @@
+{
+  "extends": "../../.eslintrc",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
