@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
-import { Configuration } from 'webpack';
+import { Configuration, ProvidePlugin } from 'webpack';
 import ESLintPlugin from 'eslint-webpack-plugin';
 
 const webpackCommon: Configuration = {
@@ -29,6 +30,10 @@ const webpackCommon: Configuration = {
   },
 
   plugins: [
+    new DotenvWebpackPlugin(),
+    new ProvidePlugin({
+      process: 'process/browser',
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),

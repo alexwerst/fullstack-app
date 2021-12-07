@@ -11,7 +11,7 @@ export const mainConfig = {
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
     synchronize: true,
-    logging: true,
+    logging: ['error'],
     entities: [`${__dirname}/../**/*.model.{ts,js}`],
   },
 };
