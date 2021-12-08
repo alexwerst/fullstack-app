@@ -6,12 +6,9 @@ import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 import helmet from 'helmet';
 import logger from 'morgan';
-import mysql from 'mysql';
-import { createConnection } from 'typeorm';
-import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
-import { mainConfig } from './config';
 import { User } from './db/models';
+import { connect } from './db/services';
 
 dotenv.config();
 
@@ -24,48 +21,41 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const dbConnection = mysql.createConnection({
-  host: process.env.DATABASE_HOST,
-  port: parseInt(process.env.DATABASE_PORT!, 10),
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-});
+app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
 
-dbConnection.connect((err: Error) => {
-  if (err) {
-    throw err;
-  }
+connect()
+  .then(async connection => {
+    app.get('/initialize-user', async (_req: Request, res: Response) => {
+      const repository = connection.getRepository(User);
+      const user = await repository.findOne({ email: 'test@test.com' });
 
-  console.log('Connected!');
-});
+      if (user) {
+        res.send(`<h1>User has already been created!</h1>`);
+      } else {
+        const newUser = new User();
 
-createConnection(mainConfig.database as MysqlConnectionOptions).then(async connection => {
-  app.get('/initialize-user', async (_req: Request, res: Response) => {
-    const repository = connection.getRepository(User);
-    const user = await repository.findOne({ email: 'test@test.com' });
+        newUser.firstName = 'Admin';
+        newUser.lastName = 'Adminuser';
+        newUser.email = 'test@test.com';
 
-    if (user) {
-      res.send(`<h1>User has already been created</h1>`);
-    } else {
-      const newUser = new User();
+        await repository.save(newUser);
 
-      newUser.firstName = 'Admin';
-      newUser.lastName = 'Adminuser';
-      newUser.email = 'test@test.com';
+        res.send(`<h1>User was initialized</h1>`);
+      }
+    });
 
-      await repository.save(newUser);
-
-      res.send(`<h1>User was initialized</h1>`);
-    }
-  });
-
-  app.get('/', (_req: Request, res: Response) => {
-    res.send(`
+    app.get('/', (_req: Request, res: Response) => {
+      res.send(`
       <h1>Hello from the server side!</h1>
-      <h3>DB connection: ${dbConnection.state}</h3> 
+      <h3>${connection.isConnected}</h3>
     `);
+    });
+  })
+  .catch(error => {
+    app.get('/', (_req: Request, res: Response) => {
+      res.send(`
+      <h1>Hello from the server side!</h1>
+      <h3>Error: ${error}</h3> 
+    `);
+    });
   });
-
-  app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
-});

@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { ConnectionOptions } from 'typeorm';
 
 dotenv.config();
 
@@ -13,5 +14,5 @@ export const mainConfig = {
     synchronize: true,
     logging: ['error'],
     entities: [`${__dirname}/../**/*.model.{ts,js}`],
-  },
+  } as ConnectionOptions,
 };

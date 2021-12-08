@@ -9,7 +9,6 @@
     "serve": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -q build/app.js\"",
     "prestart": "npm run build",
     "start:prod": "cross-env NODE_ENV=production node build/app.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon --watch \"./**/*.ts\" --exec \"ts-node\" src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
