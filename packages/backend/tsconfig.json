@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
+    "target": "ES2017",
+    "module": "CommonJS",
+    "lib": ["es2019"],
     "sourceMap": true,
     "outDir": "build",
     "moduleResolution": "node",
