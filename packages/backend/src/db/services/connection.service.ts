@@ -2,4 +2,4 @@ import { createConnection } from 'typeorm';
 
 import { mainConfig } from '../../config';
 
-export const connect = async () => createConnection(mainConfig.database);
+export const createDBConnection = async () => createConnection(mainConfig.database);
